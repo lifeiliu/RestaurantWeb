@@ -2,7 +2,7 @@
 	<link rel="stylesheet" type="text/css" href="/styles.css" />
 </head>
 <div class="logo">
-	<h1>Ricky's Restaurant</h1>
+	<h1>Ricky's Riverside Restaurant</h1>
 </div>
 <div class="links">
 <a href='/' class="button">View the menu</a>

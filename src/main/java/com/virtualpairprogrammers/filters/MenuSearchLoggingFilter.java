@@ -9,10 +9,9 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
-import javax.servlet.http.HttpServletRequest;
 
-@WebFilter("/searchResults.html")
-public class MenuSearchCorrectionFilter implements Filter {
+@WebFilter(value={"/searchResults.html","/anotherUrl.html"})
+public class MenuSearchLoggingFilter implements Filter {
 
 	@Override
 	public void destroy() {
@@ -21,16 +20,11 @@ public class MenuSearchCorrectionFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		
+
 		String searchTerm = request.getParameter("searchTerm");
-		if (searchTerm.toLowerCase().equals("chook")) {
-			MenuSearchCorrectionRequestWrapper wrapper = new MenuSearchCorrectionRequestWrapper((HttpServletRequest)request);
-			wrapper.setNewSearchTerm("chicken");
-			chain.doFilter(wrapper, response);
-		}
-		else {
-			chain.doFilter(request, response);
-		}
+		System.out.println("User searched for : " + searchTerm);
+		
+		chain.doFilter(request, response);
 	}
 
 	@Override

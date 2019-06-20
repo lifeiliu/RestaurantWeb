@@ -4,6 +4,7 @@
   <classpathentry kind="src" path="src/main/java" including="**/*.java"/>
   <classpathentry kind="src" path="src/main/resources" excluding="**/*.java"/>
   <classpathentry kind="output" path="target/classes"/>
+  <classpathentry kind="var" path="M2_REPO/javax/servlet/jstl/1.2/jstl-1.2.jar"/>
   <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/tomcat/embed/tomcat-embed-core/8.0.28/tomcat-embed-core-8.0.28.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/tomcat/embed/tomcat-embed-logging-juli/8.0.28/tomcat-embed-logging-juli-8.0.28.jar"/>
@@ -20,6 +21,7 @@
   <classpathentry kind="var" path="M2_REPO/org/apache/tomcat/tomcat-util-scan/8.0.28/tomcat-util-scan-8.0.28.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/tomcat/tomcat-util/8.0.28/tomcat-util-8.0.28.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/h2database/h2/1.4.196/h2-1.4.196.jar"/>
-  <classpathentry kind="var" path="M2_REPO/jstl/jstl/1.2/jstl-1.2.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/json/json/20180813/json-20180813.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/json/json/20170516/json-20170516.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/apache/tomcat/tomcat-websocket/8.0.28/tomcat-websocket-8.0.28.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/apache/tomcat/tomcat-websocket-api/8.0.28/tomcat-websocket-api-8.0.28.jar"/>
 </classpath>

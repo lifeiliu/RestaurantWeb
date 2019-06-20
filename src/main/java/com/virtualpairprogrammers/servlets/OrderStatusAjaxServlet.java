@@ -5,7 +5,6 @@ import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,18 +17,18 @@ import com.virtualpairprogrammers.data.MenuDaoFactory;
 
 @WebServlet("/updatedStatus")
 public class OrderStatusAjaxServlet extends HttpServlet {
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		Long id = Long.valueOf(request.getParameter("id"));
-		System.out.println(id);
 		MenuDao dao = MenuDaoFactory.getMenuDao();
 		String status = dao.getOrder(id).getStatus();
-
+		
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html");
+		
 		JSONObject json = new JSONObject();
 		json.put("status", status);
+		
 		SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
 		json.put("time", sdf.format(new Date()));
 		out.write(json.toString());

@@ -1,6 +1,7 @@
 package com.virtualpairprogrammers.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -18,19 +19,16 @@ import com.virtualpairprogrammers.domain.MenuItem;
 @WebServlet("/searchResults.html")
 public class MenuSearchServlet extends HttpServlet {
 
-	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
-		String searchTerm = request.getParameter("searchTerm");
-
+		
+		String searchTerm = request.getParameter("searchTerm");		
 		MenuDao menuDao = MenuDaoFactory.getMenuDao();
 		List<MenuItem> menuItems = menuDao.find(searchTerm);
-
+		
 		request.setAttribute("menuItems", menuItems);
-
-		ServletContext context = request.getServletContext();
-		RequestDispatcher dispatcher = context.getRequestDispatcher("/searchResult.jsp");
-		dispatcher.forward(request, response);
-
+		
+		ServletContext context = getServletContext();
+		RequestDispatcher dispatch = context.getRequestDispatcher("/searchResults.jsp");
+		dispatch.forward(request, response);	
 	}
 }

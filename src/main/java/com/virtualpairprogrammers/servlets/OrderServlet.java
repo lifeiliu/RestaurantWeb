@@ -1,6 +1,7 @@
 package com.virtualpairprogrammers.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -18,18 +19,19 @@ import com.virtualpairprogrammers.data.MenuDaoFactory;
 import com.virtualpairprogrammers.domain.MenuItem;
 
 @WebServlet("/order.html")
-@ServletSecurity(@HttpConstraint(rolesAllowed = { "user" }))
+@ServletSecurity(@HttpConstraint(rolesAllowed={"user"}))
 public class OrderServlet extends HttpServlet {
 
-	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
+		
 		MenuDao menuDao = MenuDaoFactory.getMenuDao();
 		List<MenuItem> menuItems = menuDao.getFullMenu();
-		request.setAttribute("fullOrderMenu", menuItems);
+		
+		request.setAttribute("menuItems", menuItems);
+		
+		ServletContext context = getServletContext();
+		RequestDispatcher dispatch = context.getRequestDispatcher("/order.jsp");
+		dispatch.forward(request, response);
 
-		ServletContext context = request.getServletContext();
-		RequestDispatcher dispatcher = context.getRequestDispatcher("/order.jsp");
-		dispatcher.forward(request, response);
 	}
 }

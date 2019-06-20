@@ -104,5 +104,10 @@
 		    <artifactId>json</artifactId>
 		    <version>20180813</version>
 		</dependency>
+		<dependency>
+		    <groupId>org.apache.tomcat</groupId>
+		    <artifactId>tomcat-websocket</artifactId>
+		    <version>8.0.28</version>
+		</dependency>
 	</dependencies>
 </project>

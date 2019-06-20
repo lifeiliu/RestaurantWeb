@@ -9,7 +9,6 @@
         The menu and online ordering system for Ricky's Restaurant
     </description>
 
-
 	<session-config>
 		<session-timeout>120</session-timeout>
 	</session-config>
@@ -18,8 +17,10 @@
 		<role-name>user</role-name>
 	</security-role>
 	
-	
-	
+	<security-role>
+		<role-name>admin</role-name>
+	</security-role>
+		
 	<login-config>
 		<auth-method>FORM</auth-method>
 		<form-login-config>

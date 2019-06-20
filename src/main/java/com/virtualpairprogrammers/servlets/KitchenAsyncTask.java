@@ -14,39 +14,45 @@ import com.virtualpairprogrammers.domain.Order;
 public class KitchenAsyncTask implements Runnable {
 
 	private AsyncContext asyncContext;
-
+		
 	public void setAsyncContext(AsyncContext asyncContext) {
 		this.asyncContext = asyncContext;
 	}
 
 	@Override
 	public void run() {
-		HttpServletRequest request = (HttpServletRequest) asyncContext.getRequest();
-		HttpServletResponse response = (HttpServletResponse) asyncContext.getResponse();
-
-		PrintWriter out = null;
-
+		
+		HttpServletRequest request = (HttpServletRequest)asyncContext.getRequest();
+		HttpServletResponse response = (HttpServletResponse)asyncContext.getResponse();
+		
+		PrintWriter out;
 		try {
 			out = response.getWriter();
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			asyncContext.complete();
+			throw new RuntimeException(e1);
 		}
 		response.setContentType("text/html");
+		
 		Long size = Long.parseLong(request.getParameter("size"));
-
+		
 		MenuDao dao = MenuDaoFactory.getMenuDao();
+		
 		while (dao.getAllOrders().size() < size) {
 			try {
 				Thread.sleep(500);
 			} catch (InterruptedException e) {
+				asyncContext.complete();
 				throw new RuntimeException(e);
 			}
 		}
-
+		
 		Order order = dao.getOrder(size);
-		out.println("<p><strong>Next Order: </strong>" + order.toString() + "</p>");
+		out.println("<p><strong>Next order:</strong><br/>" + order.toString() + "</p>");
 		out.close();
+		
+		asyncContext.complete();
+
 	}
 
 }
